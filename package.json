@@ -1,0 +1,32 @@
+{
+  "name": "social-circle-bot",
+  "version": "1.0.0",
+  "description": "A discord bot for the social circle game.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leighton-tidwell/social-circle-bot.git"
+  },
+  "engines": {
+    "node": "16.x"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leighton-tidwell/social-circle-bot/issues"
+  },
+  "homepage": "https://github.com/leighton-tidwell/social-circle-bot#readme",
+  "dependencies": {
+    "discord.js": "^13.1.0",
+    "dotenv": "^10.0.0",
+    "mongoose": "^6.0.8"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  }
+}
