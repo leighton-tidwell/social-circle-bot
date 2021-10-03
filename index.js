@@ -37,7 +37,6 @@ client.on("ready", async () => {
   const guild = await client.guilds.fetch("893211096763207770");
   const channel = guild.channels.cache.get("894349711761346612");
   const messages = await channel.messages.fetch();
-  console.log(messages);
 
   if (!messages.size)
     channel.send(`There are ${totalInQueue} players in the queue!`);
