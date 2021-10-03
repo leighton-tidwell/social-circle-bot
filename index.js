@@ -35,15 +35,26 @@ client.on("ready", async () => {
   totalInQueue = clientsFindingMatch.length;
 
   const guild = await client.guilds.fetch("893211096763207770");
-  const channel = guild.channels.cache.get("894303082295480391");
+  const channel = guild.channels.cache.get("894349711761346612");
+  const messages = await channel.messages.fetch();
+  console.log(messages);
 
-  channel.send(`There are ${totalInQueue} players in the queue!`);
+  if (!messages.size)
+    channel.send(`There are ${totalInQueue} players in the queue!`);
+
+  let botMessageId = "";
+  messages.forEach((message) => {
+    botMessageId = message.id;
+  });
+
+  const botMessage = await channel.messages.fetch(botMessageId);
+  botMessage.edit(`There are ${totalInQueue} players in the queue!`);
 
   findMatchModel.watch().on("change", async (data) => {
     if (data.operationType === "insert") totalInQueue += 1;
     else totalInQueue -= 1;
 
-    channel.send(`There are ${totalInQueue} players in the queue!`);
+    botMessage.edit(`There are ${totalInQueue} players in the queue!`);
   });
 });
 
