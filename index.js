@@ -61,6 +61,8 @@ client.on("ready", async () => {
     if (data.operationType === "insert") totalInQueue += 1;
     else totalInQueue -= 1;
 
+    console.log("Detected change.");
+
     const queue = await guild.channels.fetch(id);
     queue.setName(`Players in queue: ${totalInQueue}`);
   });
