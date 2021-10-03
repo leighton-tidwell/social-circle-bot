@@ -35,36 +35,15 @@ client.on("ready", async () => {
   totalInQueue = clientsFindingMatch.length;
 
   const guild = await client.guilds.fetch("893211096763207770");
-  const playerRole = guild.roles.cache.get("893211495717023795");
-  const botRole = guild.roles.cache.get("894290066283843605");
+  const channel = guild.channels.cache.get("894303082295480391");
 
-  const queueChannel = await guild.channels.create(
-    `Players in queue: ${totalInQueue}`,
-    {
-      type: "GUILD_VOICE",
-      permissionOverwrites: [
-        {
-          id: playerRole,
-          deny: ["CONNECT"],
-        },
-        {
-          id: botRole,
-          allow: ["MANAGE_CHANNELS", "VIEW_CHANNEL"],
-        },
-      ],
-    }
-  );
-
-  const { id } = queueChannel;
+  channel.send(`There are ${totalInQueue} players in the queue!`);
 
   findMatchModel.watch().on("change", async (data) => {
     if (data.operationType === "insert") totalInQueue += 1;
     else totalInQueue -= 1;
 
-    console.log("Detected change.");
-
-    const queue = await guild.channels.fetch(id);
-    queue.setName(`Players in queue: ${totalInQueue}`);
+    channel.send(`There are ${totalInQueue} players in the queue!`);
   });
 });
 
